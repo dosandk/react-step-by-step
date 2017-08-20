@@ -7,8 +7,37 @@ class StatefulComponent extends React.Component {
     super(...args);
   }
 
+  componentWillMount () {
+    console.error('componentWillMount');
+  }
+
+  componentDidMount() {
+    console.error('componentDidMount');
+  }
+
+  componentWillReceiveProps () {
+    console.error('componentWillReceiveProps');
+  }
+
+  shouldComponentUpdate() {
+    console.error('shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillUpdate() {
+    console.error('componentWillUpdate');
+  }
+
+  componentDidUpdate() {
+    console.error('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.error('componentWillUnmount');
+  }
+
   render () {
-    console.error('props', this.props);
+    console.error('render');
 
     return (
       <div>
@@ -24,7 +53,14 @@ class StatefulComponent extends React.Component {
 }
 
 const StatelessComponent = () => (
-  <h3>This is StatelessComponent</h3>
+  <div>
+    <h3>This is StatelessComponent</h3>
+    <button onClick={() => {
+      ReactDOM.render(<StatefulComponent color="green" />, rootElement);
+    }}>
+      Update parent component
+    </button>
+  </div>
 );
 
 ReactDOM.render(<StatefulComponent color="red" />, rootElement);
