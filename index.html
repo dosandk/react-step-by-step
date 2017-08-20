@@ -13,31 +13,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <div id="root"></div>
-  <script type="text/babel">
-    const rootElement = document.getElementById('root');
-    const HelloComponent = ({color}) => {
-      console.error(`color value: "${color}" was transfered via props`);
-
-      return (
-        <div>
-          <h1>Hello, React!</h1>
-          <div className="description" style={{ color }}>
-            This is JSX it's a syntax extension to JavaScript
-          </div>
-          <h2>Level 1</h2>
-          <div id="container" />
-        </div>
-      );
-    };
-
-    ReactDOM.render(<HelloComponent color="red" />, rootElement);
-
-    const container = document.getElementById('container');
-
-    ReactDOM.render(<h3>Level 2</h3>, container);
-  </script>
-
+  <script type="text/babel" src="app.js">
 </body>
 </html>
