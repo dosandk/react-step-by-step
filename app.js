@@ -2,69 +2,71 @@ console.error('React', React);
 
 const rootElement = document.getElementById('root');
 
-class StatefulComponent extends React.Component {
+class ControlledComponent extends React.Component {
   constructor (...args) {
     super(...args);
+
+    this.state = {
+      value: ''
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillMount () {
-    console.error('componentWillMount');
+  handleSubmit(event) {
+    console.error(`A name was submitted: ${this.state.value}`);
+    event.preventDefault();
   }
 
-  componentDidMount() {
-    console.error('componentDidMount');
-  }
-
-  componentWillReceiveProps () {
-    console.error('componentWillReceiveProps');
-  }
-
-  shouldComponentUpdate() {
-    console.error('shouldComponentUpdate');
-    return true;
-  }
-
-  componentWillUpdate() {
-    console.error('componentWillUpdate');
-  }
-
-  componentDidUpdate() {
-    console.error('componentDidUpdate');
-  }
-
-  componentWillUnmount() {
-    console.error('componentWillUnmount');
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   render () {
     console.error('render');
-
     return (
       <div>
         <h1>Hello, React!</h1>
         <div className="description" style={{ color: this.props.color }}>
-          This is JSX it's a syntax extension to JavaScript
+          This is controlled component
         </div>
-        <h2>This is StatefulComponent</h2>
-        <div id="container" />
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.value} onChange={this.handleChange} type="text"/>
+          <input type="submit"/>
+        </form>
+        <div id="container" className="container"/>
       </div>
     );
   }
 }
 
-const StatelessComponent = () => (
-  <div>
-    <h3>This is StatelessComponent</h3>
-    <button onClick={() => {
-      ReactDOM.render(<StatefulComponent color="green" />, rootElement);
-    }}>
-      Update parent component
-    </button>
-  </div>
-);
+class UncontrolledComponent extends React.Component {
+  constructor(...args) {
+    super(...args);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-ReactDOM.render(<StatefulComponent color="red" />, rootElement);
+  handleSubmit(event) {
+    console.error(`A name was submitted: ${this.input.value}`);
+    event.preventDefault();
+  }
+
+  render () {
+    return (
+      <div>
+        <div>This is uncontrolled component</div>
+        <form onSubmit={this.handleSubmit}>
+          <input defaultValue="some value" type="text" ref={el => this.input = el} />
+          <input type="submit"/>
+        </form>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<ControlledComponent color="red" />, rootElement);
 
 const container = document.getElementById('container');
 
-ReactDOM.render(<StatelessComponent />, container);
+ReactDOM.render(<UncontrolledComponent />, container);
