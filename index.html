@@ -6,9 +6,9 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Introduction to React</title>
-  <script src="https://unpkg.com/react@latest/dist/react.js"></script>
-  <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="vendors/react.js"></script>
+  <script src="vendors/react-dom.js"></script>
+  <script src="vendors/babel.min.js"></script>
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,11 +24,17 @@
           <div className="description">
             This is JSX it's a syntax extension to JavaScript
           </div>
+          <h2>Level 1</h2>
+          <div id="container" />
         </div>
       );
     };
 
     ReactDOM.render(<HelloComponent />, rootElement);
+
+    const container = document.getElementById('container');
+
+    ReactDOM.render(<h3>Level 2</h3>, container);
   </script>
 
 </body>
