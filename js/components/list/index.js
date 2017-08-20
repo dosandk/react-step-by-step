@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import {articles} from '../../mocks';
+import PropTypes from 'prop-types'
 import {List, ListItem, TextField} from 'material-ui';
 
 import styles from './list.scss';
 
 class Article extends Component {
+  static propTypes = {
+    item: PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    }).isRequired,
+    deleteItem: PropTypes.func
+  };
+
   render () {
     return (
       <ListItem className={styles.article}>
