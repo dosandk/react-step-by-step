@@ -12,6 +12,6 @@ charset = utf-8
 indent_style = space
 
 # Matches multiple files with brace expansion notation
-[*.{js,es6,jsx}]
+[*.{js,es6,jsx,css}]
 indent_style = space
 indent_size = 2
