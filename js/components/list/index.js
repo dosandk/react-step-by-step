@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {articles} from '../../mocks';
+import {List, ListItem, TextField} from 'material-ui';
 
 import styles from './list.scss';
 
-class ListItem extends Component {
+class Article extends Component {
   render () {
     return (
-      <div className={styles.article}>
+      <ListItem className={styles.article}>
         <div><b>date:</b> {this.props.item.date}</div>
         <div><b>title:</b> {this.props.item.title}</div>
         <div><b>text:</b> {this.props.item.text}</div>
@@ -14,12 +15,12 @@ class ListItem extends Component {
           <button>edit article</button>
           <button onClick={this.props.deleteItem}>delete article</button>
         </div>
-      </div>
+      </ListItem>
     );
   }
 }
 
-export default class List extends Component {
+export default class Articles extends Component {
   constructor (...args) {
     super(...args);
 
@@ -67,27 +68,28 @@ export default class List extends Component {
         <form onSubmit={this.addArticle}>
           <h2>Create article</h2>
           <div>
-            <input className={styles['parent-size']}
-                   value={this.state.title}
-                   name="title"
-                   onChange={this.onInputChanged}
-                   placeholder="title"
-                   type="text"/>
+            <TextField className={styles['parent-size']}
+                       fullWidth={true}
+                       value={this.state.title}
+                       name="title"
+                       onChange={this.onInputChanged}
+                       placeholder="title"
+                       type="text"/>
           </div>
           <div>
-            <textarea className={styles['parent-size']}
-                      value={this.state.text}
-                      name="text"
-                      onChange={this.onInputChanged}
-                      placeholder="text" />
+            <TextField className={styles['parent-size']}
+                       fullWidth={true}
+                       value={this.state.text}
+                       name="text"
+                       onChange={this.onInputChanged}
+                       placeholder="text" />
           </div>
           <input value="Create article" type="submit"/>
         </form>
-        <ul>
-          { this.state.articles.map(item => <ListItem key={item.id} item={item} deleteItem={this.deleteArticle(item.id)} />) }
-        </ul>
+        <List>
+          { this.state.articles.map(item => <Article key={item.id} item={item} deleteItem={this.deleteArticle(item.id)} />) }
+        </List>
       </div>
     );
   }
 }
-
