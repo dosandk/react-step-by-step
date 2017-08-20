@@ -3,7 +3,9 @@ import {articles} from '../../mocks';
 import PropTypes from 'prop-types'
 import {List, ListItem, TextField} from 'material-ui';
 
-import styles from './list.scss';
+import CheckAuthorization from '../../hoc/check-authorization';
+
+import styles from './articles.scss';
 
 class Article extends Component {
   static propTypes = {
@@ -30,7 +32,7 @@ class Article extends Component {
   }
 }
 
-export default class Articles extends Component {
+class Articles extends Component {
   constructor (...args) {
     super(...args);
 
@@ -76,6 +78,7 @@ export default class Articles extends Component {
     return (
       <div>
         <form onSubmit={this.addArticle}>
+          <h2>User: {this.props.getUserName()} <button onClick={this.props.logout}>logout</button></h2>
           <h2>Create article</h2>
           <div>
             <TextField className={styles['parent-size']}
@@ -103,3 +106,5 @@ export default class Articles extends Component {
     );
   }
 }
+
+export default CheckAuthorization(Articles);
