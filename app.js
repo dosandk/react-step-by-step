@@ -1,31 +1,28 @@
-console.error('React', React);
-
 const rootElement = document.getElementById('root');
 
-class ControlledComponent extends React.Component {
+class List extends React.Component {
   render () {
+    const arr = new Array(10).fill(1).map((item, i) => i++);
+
     return (
       <div>
         <h1>Hello, React!</h1>
-        <div className="description" style={{ color: this.props.color }}>
-          This components renders child components
-        </div>
-        { this.props.children }
+        Render list:
+        <ul>
+          { arr.map(item => <ListItem key={item} />) }
+        </ul>
       </div>
     );
   }
 }
 
-class UncontrolledComponent extends React.Component {
+class ListItem extends React.Component {
   render () {
     return (
-      <div>This is child component</div>
+      <li>This is list element</li>
     );
   }
 }
 
-ReactDOM.render(
-  <ControlledComponent color="red" >
-    <UncontrolledComponent />
-  </ControlledComponent>,
-rootElement);
+ReactDOM.render(<List color="red" />, rootElement);
+
