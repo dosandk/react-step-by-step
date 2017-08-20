@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {articles} from '../../mocks';
 
+import styles from './list.scss';
+
 class ListItem extends Component {
   render () {
     return (
-      <div className="article">
+      <div className={styles.article}>
         <div><b>date:</b> {this.props.item.date}</div>
         <div><b>title:</b> {this.props.item.title}</div>
         <div><b>text:</b> {this.props.item.text}</div>
@@ -65,7 +67,7 @@ export default class List extends Component {
         <form onSubmit={this.addArticle}>
           <h2>Create article</h2>
           <div>
-            <input className="parent-size"
+            <input className={styles['parent-size']}
                    value={this.state.title}
                    name="title"
                    onChange={this.onInputChanged}
@@ -73,7 +75,7 @@ export default class List extends Component {
                    type="text"/>
           </div>
           <div>
-            <textarea className="parent-size"
+            <textarea className={styles['parent-size']}
                       value={this.state.text}
                       name="text"
                       onChange={this.onInputChanged}
