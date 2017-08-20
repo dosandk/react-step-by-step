@@ -2,3 +2,11 @@
   font-size: 16px;
   color: forestgreen;
 }
+
+.article {
+  padding: 20px 10px;
+}
+
+.parent-size {
+  width: 100%;
+}
