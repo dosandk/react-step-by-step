@@ -17,3 +17,6 @@ Please use ```git checkout tags/step-[n]``` for moving via steps
 * Step-13: added material-ui - set of styled components;   
 * Step-14: added propTypes example;  
 * Step-15: added HOC (Higher Order Component) example; 
+
+// TODO: add step for router
+// TODO: add step about clone children
